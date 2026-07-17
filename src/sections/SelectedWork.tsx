@@ -57,6 +57,10 @@ export function SelectedWork() {
           <span className="font-mono text-xs text-brand-gold/40 hidden md:block">
             PROJECTS
           </span>
+          <span className="font-mono text-[11px] text-brand-gold/60 md:hidden flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+            TAP TO EXPAND
+          </span>
         </div>
 
         <ExpandableCardDemo />

@@ -38,60 +38,56 @@ export default function ExpandableCardDemo() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/20 h-full w-full z-10"
+                        className="fixed inset-0 bg-black/60 backdrop-blur-sm h-full w-full z-50"
                     />
                 )}
             </AnimatePresence>
             <AnimatePresence>
                 {active && typeof active === "object" ? (
-                    <div className="fixed inset-0  grid place-items-center z-[100]">
-                        <motion.button
-                            key={`button-${active.title}-${id}`}
-                            layout
-                            initial={{
-                                opacity: 0,
-                            }}
-                            animate={{
-                                opacity: 1,
-                            }}
-                            exit={{
-                                opacity: 0,
-                                transition: {
-                                    duration: 0.05,
-                                },
-                            }}
-                            className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-black/50 hover:bg-black rounded-full h-6 w-6 z-50 text-white"
-                            onClick={() => setActive(null)}
-                        >
-                            <CloseIcon />
-                        </motion.button>
+                    <div className="fixed inset-0 grid place-items-center z-[100] p-4 sm:p-6">
                         <motion.div
                             layoutId={`card-${active.title}-${id}`}
                             ref={ref}
-                            className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-neutral-900 sm:rounded-3xl overflow-hidden border border-white/10"
+                            className="w-[94%] sm:w-full max-w-[520px] max-h-[88vh] sm:max-h-[90vh] flex flex-col bg-neutral-900/95 backdrop-blur-2xl rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl relative"
                         >
-                            <motion.div layoutId={`image-${active.title}-${id}`}>
+                            <motion.button
+                                key={`button-${active.title}-${id}`}
+                                layout
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{
+                                    opacity: 0,
+                                    transition: { duration: 0.05 },
+                                }}
+                                className="flex absolute top-3 right-3 sm:top-4 sm:right-4 items-center justify-center bg-black/70 hover:bg-black border border-white/20 rounded-full h-8 w-8 sm:h-9 sm:w-9 z-50 text-white transition-transform hover:scale-110 active:scale-95 shadow-lg"
+                                onClick={() => setActive(null)}
+                            >
+                                <CloseIcon />
+                            </motion.button>
+
+                            <motion.div layoutId={`image-${active.title}-${id}`} className="relative shrink-0">
                                 <img
-                                    width={200}
-                                    height={200}
+                                    width={400}
+                                    height={300}
                                     src={active.src}
                                     alt={active.title}
-                                    className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                                    className="w-full h-48 sm:h-64 md:h-72 object-cover object-top"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent opacity-60" />
                             </motion.div>
 
-                            <div>
-                                <div className="flex justify-between items-start p-4">
-                                    <div className="">
+                            <div className="flex flex-col flex-1 overflow-hidden">
+                                <div className="flex justify-between items-start p-4 sm:p-6 border-b border-white/10 gap-4">
+                                    <div>
                                         <motion.h3
                                             layoutId={`title-${active.title}-${id}`}
-                                            className="font-bold text-white"
+                                            className="font-display font-bold text-white text-xl sm:text-2xl tracking-wide"
                                         >
                                             {active.title}
                                         </motion.h3>
                                         <motion.p
                                             layoutId={`description-${active.description}-${id}`}
-                                            className="text-white/70"
+                                            className="text-white/70 text-xs sm:text-sm mt-1"
                                         >
                                             {active.description}
                                         </motion.p>
@@ -101,18 +97,21 @@ export default function ExpandableCardDemo() {
                                         layoutId={`button-${active.title}-${id}`}
                                         href={active.ctaLink}
                                         target="_blank"
-                                        className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                                        className="px-4 py-2.5 text-xs sm:text-sm rounded-full font-bold bg-brand-gold hover:bg-white text-black transition-all duration-300 shrink-0 shadow-lg inline-flex items-center gap-1"
                                     >
-                                        {active.ctaText}
+                                        <span>{active.ctaText}</span>
+                                        <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
                                     </motion.a>
                                 </div>
-                                <div className="pt-4 relative px-4">
+                                <div className="p-4 sm:p-6 relative overflow-y-auto max-h-[35vh] sm:max-h-[40vh] [scrollbar-width:none] [-ms-overflow-style:none]">
                                     <motion.div
                                         layout
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
-                                        className="text-white/60 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                                        className="text-white/75 text-xs sm:text-sm md:text-base pb-4 flex flex-col gap-3"
                                     >
                                         {typeof active.content === "function"
                                             ? active.content()
@@ -124,49 +123,72 @@ export default function ExpandableCardDemo() {
                     </div>
                 ) : null}
             </AnimatePresence>
-            <div className="w-full gap-4">
-                {cards.map((card) => (
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:flex md:flex-col md:gap-3 w-full">
+                {cards.map((card, idx) => (
                     <motion.div
                         layoutId={`card-${card.title}-${id}`}
                         key={`card-${card.title}-${id}`}
                         onClick={() => setActive(card)}
-                        className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer group"
+                        whileHover={{ scale: 1.015, y: -2 }}
+                        whileTap={{ scale: 0.985 }}
+                        className={`group relative overflow-hidden rounded-2xl bg-neutral-900/80 backdrop-blur-md border border-white/10 p-3 sm:p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-xl hover:border-brand-gold/40 hover:shadow-brand-gold/5 ${
+                            idx === 4 ? "col-span-2 sm:flex-row sm:items-center sm:gap-4" : "col-span-1"
+                        } md:p-4 md:flex-row md:justify-between md:items-center md:bg-transparent md:hover:bg-neutral-900/50 md:border-transparent md:hover:border-white/10 md:shadow-none md:hover:shadow-none`}
                     >
-                        <div className="flex gap-4 flex-col md:flex-row ">
-                            <motion.div layoutId={`image-${card.title}-${id}`}>
+                        <div className={`flex flex-col gap-3 ${idx === 4 ? "sm:flex-row sm:items-center sm:gap-4" : ""} md:flex-row md:items-center md:gap-5 w-full md:w-auto min-w-0`}>
+                            <motion.div
+                                layoutId={`image-${card.title}-${id}`}
+                                className={`relative overflow-hidden rounded-xl border border-white/10 shrink-0 ${
+                                    idx === 4
+                                        ? "w-full sm:w-32 h-36 sm:h-20 md:h-14 md:w-14"
+                                        : "w-full aspect-[4/3] md:aspect-auto md:h-14 md:w-14"
+                                }`}
+                            >
                                 <img
-                                    width={100}
-                                    height={100}
+                                    width={200}
+                                    height={200}
                                     src={card.src}
                                     alt={card.title}
-                                    className="h-40 w-40 md:h-14 md:w-14 rounded-lg object-cover object-top"
+                                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:hidden" />
+                                <div className="absolute top-2 right-2 md:hidden bg-black/70 backdrop-blur-md border border-white/20 text-[10px] font-mono text-brand-gold px-2 py-0.5 rounded-full shadow-md z-10">
+                                    0{idx + 1}
+                                </div>
                             </motion.div>
-                            <div className="">
+                            <div className="flex flex-col gap-1 md:gap-0.5 flex-1 min-w-0">
                                 <motion.h3
                                     layoutId={`title-${card.title}-${id}`}
-                                    className="font-medium text-white group-hover:text-neutral-900 transition-colors duration-200 text-center md:text-left"
+                                    className="font-display sm:font-bold text-white text-sm sm:text-base md:text-base group-hover:text-brand-gold md:group-hover:text-white transition-colors duration-200 line-clamp-1"
                                 >
                                     {card.title}
                                 </motion.h3>
                                 <motion.p
                                     layoutId={`description-${card.description}-${id}`}
-                                    className="text-white/60 group-hover:text-neutral-700 transition-colors duration-200 text-center md:text-left"
+                                    className="text-white/60 text-[11px] sm:text-xs md:text-sm group-hover:text-white/80 transition-colors duration-200 line-clamp-2 md:line-clamp-1 font-mono md:font-sans leading-relaxed md:leading-normal"
                                 >
                                     {card.description}
                                 </motion.p>
                             </div>
                         </div>
-                        <motion.a
-                            layoutId={`button-${card.title}-${id}`}
-                            href={card.ctaLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0 inline-block"
-                        >
-                            {card.ctaText}
-                        </motion.a>
+                        <div className="mt-3 pt-2.5 border-t border-white/10 md:border-t-0 md:mt-0 md:pt-0 flex items-center justify-between w-full md:w-auto shrink-0">
+                            <span className="text-[10px] font-mono text-brand-gold/70 uppercase tracking-wider md:hidden">
+                                {idx === 0 ? "Hardware" : idx === 1 ? "Cybersec" : idx === 2 ? "SaaS AI" : idx === 3 ? "XR Edge" : "Framework"}
+                            </span>
+                            <motion.a
+                                layoutId={`button-${card.title}-${id}`}
+                                href={card.ctaLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="px-3 py-1.5 md:px-4 md:py-2 text-[11px] md:text-sm rounded-lg md:rounded-full font-bold bg-white/10 hover:bg-white md:bg-white md:hover:bg-brand-gold text-white hover:text-black md:text-black transition-all duration-200 inline-flex items-center gap-1 shadow-sm shrink-0"
+                            >
+                                <span>{card.ctaText}</span>
+                                <svg className="w-3 h-3 md:w-3.5 md:h-3.5 ml-0.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </motion.a>
+                        </div>
                     </motion.div>
                 ))}
             </div>
