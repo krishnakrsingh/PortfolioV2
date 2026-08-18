@@ -6,6 +6,8 @@ export function Systems() {
 
   return (
     <section
+      id="systems"
+      aria-labelledby="systems-heading"
       ref={sectionRef}
       className="relative w-full py-12 md:py-16 bg-transparent"
     >
@@ -13,6 +15,7 @@ export function Systems() {
         {/* Heading */}
         <div className="flex items-end justify-between mb-4 border-b border-brand-gold/20 pb-2">
           <h2
+            id="systems-heading"
             className="font-display text-section text-white"
           >
             SYSTEMS I BUILD

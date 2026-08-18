@@ -103,6 +103,8 @@ export default function ExpandableCardDemo() {
                                         <a
                                             href={active.ctaLink}
                                             target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${active.ctaText}: ${active.title}`}
                                             className="px-4 py-2.5 text-xs sm:text-sm rounded-full font-bold bg-brand-gold hover:bg-white text-black transition-all duration-300 shrink-0 shadow-lg inline-flex items-center gap-1"
                                         >
                                             <span>{active.ctaText}</span>
@@ -126,9 +128,18 @@ export default function ExpandableCardDemo() {
             </AnimatePresence>
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:flex md:flex-col md:gap-3 w-full">
                 {cards.map((card, idx) => (
-                    <div
+                    <article
                         key={`card-${card.title}-${id}`}
                         onClick={() => setActive(card)}
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                                event.preventDefault();
+                                setActive(card);
+                            }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-label={`Open ${card.title} project details`}
                         className={`group relative rounded-2xl p-3 sm:p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-xl hover:border-brand-gold/40 hover:shadow-brand-gold/5 ${
                             idx === 4 ? "col-span-2 sm:flex-row sm:items-center sm:gap-4" : "col-span-1"
                         } md:p-4 md:flex-row md:justify-between md:items-center md:bg-transparent md:hover:bg-neutral-900/50 md:border-transparent md:hover:border-white/10 md:shadow-none md:hover:shadow-none`}
@@ -187,7 +198,7 @@ export default function ExpandableCardDemo() {
                                 </svg>
                             </a>
                         </div>
-                    </div>
+                    </article>
                 ))}
             </div>
         </>
@@ -233,7 +244,7 @@ const cards = [
         title: "XBionics",
         src: "/assets/human_machine.png",
         ctaText: "View Project",
-        ctaLink: "https://github.com/krishnakrsingh",
+        ctaLink: "https://github.com/krishnakrsingh/",
         content: () => {
             return (
                 <div>
@@ -258,7 +269,7 @@ const cards = [
         title: "BlackESP",
         src: "/assets/blackesp_device.png",
         ctaText: "View Project",
-        ctaLink: "https://github.com/krishnakrsingh",
+        ctaLink: "https://github.com/krishnakrsingh/",
         content: () => {
             return (
                 <div>
@@ -283,7 +294,7 @@ const cards = [
         title: "FinalRound",
         src: "/assets/finalround.png",
         ctaText: "View Project",
-        ctaLink: "https://github.com/krishnakrsingh",
+        ctaLink: "https://github.com/krishnakrsingh/",
         content: () => {
             return (
                 <div>
@@ -308,7 +319,7 @@ const cards = [
         title: "XR-01",
         src: "/assets/coming_soon.png",
         ctaText: "View Project",
-        ctaLink: "https://github.com/krishnakrsingh",
+        ctaLink: "https://github.com/krishnakrsingh/",
         content: () => {
             return (
                 <div>
@@ -334,7 +345,7 @@ const cards = [
         title: "Rapid Prototyping",
         src: "/assets/rapid_labs.jpg",
         ctaText: "View Project",
-        ctaLink: "https://github.com/krishnakrsingh",
+        ctaLink: "https://github.com/krishnakrsingh/",
         content: () => {
             return (
                 <div>

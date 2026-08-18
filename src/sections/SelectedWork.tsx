@@ -44,12 +44,15 @@ export function SelectedWork() {
 
   return (
     <section
+      id="work"
+      aria-labelledby="selected-work-heading"
       ref={sectionRef}
       className="relative w-full py-16 md:py-20 bg-transparent"
     >
       <div className="px-4 md:px-8 lg:px-12">
         <div className="flex items-end justify-between mb-8 border-b border-brand-gold/20 pb-4">
           <h2
+            id="selected-work-heading"
             className="font-display text-section text-white"
           >
             SELECTED WORK

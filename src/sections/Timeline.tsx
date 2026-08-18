@@ -21,7 +21,7 @@ export function TimelineSection() {
   }));
 
   return (
-    <div className="relative w-full bg-transparent">
+    <div id="timeline" aria-label="Krishna KR Singh timeline" className="relative w-full bg-transparent">
       <Timeline data={data} />
       <div className="absolute bottom-0 left-0 w-full section-divider" />
     </div>

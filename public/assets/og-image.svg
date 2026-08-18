@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Krishna KR Singh | Engineer and Technologist</title>
+  <desc id="description">Official website of Krishna KR Singh.</desc>
+  <rect width="1200" height="630" fill="#000000"/>
+  <rect x="42" y="42" width="1116" height="546" fill="none" stroke="#e0aa3e" stroke-opacity=".45" stroke-width="2"/>
+  <rect x="86" y="90" width="76" height="76" fill="none" stroke="#e0aa3e" stroke-width="4"/>
+  <text x="124" y="145" fill="#e0aa3e" font-family="Arial, sans-serif" font-size="46" font-weight="700" text-anchor="middle">K</text>
+  <text x="86" y="310" fill="#ffffff" font-family="Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="2">KRISHNA KR SINGH</text>
+  <text x="90" y="380" fill="#e0aa3e" font-family="monospace" font-size="26" letter-spacing="4">ENGINEER  /  TECHNOLOGIST</text>
+  <text x="90" y="455" fill="#b3b3b3" font-family="Arial, sans-serif" font-size="28">AI systems · cybersecurity · hardware · full-stack engineering</text>
+</svg>

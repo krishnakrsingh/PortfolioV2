@@ -4,11 +4,11 @@ import { EncryptedText } from "@/components/ui/encrypted-text";
 
 export function Philosophy() {
   return (
-    <section className="relative w-full py-16 md:py-20 bg-transparent min-h-[40vh] flex flex-col justify-center">
+    <section id="philosophy" aria-labelledby="philosophy-heading" className="relative w-full py-16 md:py-20 bg-transparent min-h-[40vh] flex flex-col justify-center">
       <div className="px-4 md:px-8 lg:px-12 w-full max-w-7xl mx-auto">
         {/* Heading */}
         <div className="flex items-end justify-between mb-8 border-b border-brand-gold/20 pb-2">
-          <h2 className="font-display text-section text-white">
+          <h2 id="philosophy-heading" className="font-display text-section text-white">
             PHILOSOPHY
           </h2>
           <span className="font-mono text-xs text-brand-gold/40 hidden md:block">

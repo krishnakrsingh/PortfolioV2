@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Github, ShieldCheck, Code2 } from 'lucide-react';
 import GlobeDemo from '@/components/ui/globe-demo';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,25 +38,43 @@ export function Contact() {
       title: "Mail",
       icon: <Mail className="w-6 h-6" />,
       href: "mailto:krishnakr2432007@gmail.com",
-      username: "mail@krishx.me"
+      username: "mail@krishx.me",
+      external: false,
     },
     {
       title: "LinkedIn",
       icon: <Linkedin className="w-6 h-6" fill="currentColor" />,
-      href: "https://linkedin.com/in/krishnakrsingh",
-      username: "@krishnakrsingh"
+      href: "https://www.linkedin.com/in/krishnakrsingh/",
+      username: "@krishnakrsingh",
+      external: true,
     },
     {
       title: "Github",
       icon: <Github className="w-6 h-6" fill="currentColor" />,
-      href: "https://github.com/krishnakrsingh",
-      username: "@krishnakrsingh"
-    }
+      href: "https://github.com/krishnakrsingh/",
+      username: "@krishnakrsingh",
+      external: true,
+    },
+    {
+      title: "TryHackMe",
+      icon: <ShieldCheck className="w-6 h-6" />,
+      href: "https://tryhackme.com/p/krishnakrsingh",
+      username: "@krishnakrsingh",
+      external: true,
+    },
+    {
+      title: "LeetCode",
+      icon: <Code2 className="w-6 h-6" />,
+      href: "https://leetcode.com/u/krishnakrsinghh/",
+      username: "@krishnakrsinghh",
+      external: true,
+    },
   ];
 
   return (
     <section
       id="contact"
+      aria-labelledby="contact-heading"
       ref={sectionRef}
       className="relative w-full bg-transparent flex flex-col overflow-hidden"
     >
@@ -65,7 +83,7 @@ export function Contact() {
         {/* Left: Content & Buttons */}
         <div ref={contentRef} className="w-full lg:w-1/2 flex flex-col gap-10 z-10">
           <div>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl text-white tracking-tighter leading-[0.9] mb-6">
+            <h2 id="contact-heading" className="font-display text-5xl md:text-7xl lg:text-8xl text-white tracking-tighter leading-[0.9] mb-6">
               LET'S START <br />
               <span className="text-brand-red">BUILDING.</span>
             </h2>
@@ -80,8 +98,9 @@ export function Contact() {
               <a
                 key={link.title}
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "me noopener noreferrer" : undefined}
+                aria-label={`${link.title}: ${link.username}`}
                 className="group flex-1 min-w-[140px] h-14 relative bg-black border border-white/20 rounded-full overflow-hidden transition-all duration-300 hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center justify-center gap-3 px-6"
               >
                 {/* Fill Effect */}
@@ -115,7 +134,7 @@ export function Contact() {
       <footer className="w-full px-4 md:px-8 lg:px-12 py-8 border-t border-brand-gold/10 relative z-20 bg-black">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <span className="font-display text-2xl font-bold text-white">Krishna</span>
+            <span className="font-display text-2xl font-bold text-white">Krishna KR Singh</span>
             <span className="text-white/40 text-sm">2026</span>
           </div>
 
